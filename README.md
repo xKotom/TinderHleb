@@ -81,3 +81,4 @@ python manage.py createsuperuser
 ```
 
 Доступ: **http://127.0.0.1:8000/admin/**
+![Лпшки Бухарики](https://cdn.discordapp.com/attachments/1474127515646689351/1481051801397760162/IMG_8841.jpg?ex=69b1e87a&is=69b096fa&hm=f4b97a32c6fbf0db4fc321c45c1a1c3a683eb528955bb9f755a1f1d4b9ae93b2&)
