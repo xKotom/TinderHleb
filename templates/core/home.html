@@ -1,0 +1,29 @@
+{% extends 'core/base.html' %}
+{% block title %}Главная — Тёплый хлеб{% endblock %}
+
+{% block content %}
+<div class="home-hero">
+    <h1>Добро пожаловать, {{ user.profile.nickname }}!</h1>
+    <p>Клубное пространство пекарни «Тёплый хлеб»</p>
+</div>
+
+<div class="home-sections">
+    <a href="{% url 'tinder' %}" class="section-card">
+        <span class="section-icon">&#127838;</span>
+        <h2>С кем разделить тёплого хлеба?</h2>
+        <p>Найди единомышленников по интересам и любимым позициям. Хлебный тиндер для настоящих ценителей!</p>
+    </a>
+
+    <a href="{% url 'feedback' %}" class="section-card">
+        <span class="section-icon">&#128172;</span>
+        <h2>Влияйте на «Тёплого хлеба»</h2>
+        <p>Жалобы и предложения. Расскажите нам, что можно улучшить или что вам особенно нравится!</p>
+    </a>
+
+    <a href="{% url 'chat' %}" class="section-card">
+        <span class="section-icon">&#127968;</span>
+        <h2>По соседству</h2>
+        <p>Соседский чат сообщества «Тёплого хлеба». Общайтесь, договаривайтесь, делитесь!</p>
+    </a>
+</div>
+{% endblock %}

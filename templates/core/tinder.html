@@ -1,0 +1,150 @@
+{% extends 'core/base.html' %}
+{% block title %}С кем разделить хлеба? — Тёплый хлеб{% endblock %}
+
+{% block content %}
+<div class="tinder-page">
+    <h1>С кем разделить тёплого хлеба?</h1>
+
+    {% if not profile.search_mode %}
+    <div class="text-center mb-2">
+        <p class="text-muted mb-2">Выберите, кого вы ищете:</p>
+        <div class="search-mode-btns">
+            <a href="{% url 'profile' %}" class="btn btn-warm btn-lg">&#128588; Настроить профиль</a>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if profile.search_mode %}
+    <div class="search-mode-btns">
+        <span class="mode-btn {% if profile.search_mode == 'friends' %}active{% endif %}">&#129309; Разделить фильтр</span>
+        <span class="mode-btn {% if profile.search_mode == 'love' %}active{% endif %}">&#10084;&#65039; Купить хлеб домой</span>
+    </div>
+    {% endif %}
+
+    {% if candidate %}
+    <div class="tinder-card" id="tinder-card">
+        {% if candidate.avatar %}
+        <div class="tinder-card-photo">
+            <img src="{{ candidate.avatar.url }}" alt="{{ candidate.nickname }}">
+        </div>
+        {% else %}
+        <div class="tinder-no-photo">&#129464;</div>
+        {% endif %}
+
+        <div class="tinder-card-info">
+            <h3>{{ candidate.nickname }}</h3>
+            <p class="age-gender">
+                {% if candidate.age %}{{ candidate.age }} лет{% endif %}
+                {% if candidate.get_gender_display %} &middot; {{ candidate.get_gender_display }}{% endif %}
+            </p>
+
+            {% if candidate.about %}
+            <p class="about">{{ candidate.about }}</p>
+            {% endif %}
+
+            {% if candidate.get_keywords_list %}
+            <div class="tinder-tags">
+                {% for kw in candidate.get_keywords_list %}
+                <span class="tag tag-keyword">{{ kw }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if candidate.get_favorite_items_list %}
+            <div class="tinder-tags">
+                {% for item in candidate.get_favorite_items_list %}
+                <span class="tag tag-item">&#127838; {{ item }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if shared_keywords or shared_items %}
+            <div class="match-score">
+                &#9889; Совпадения:
+                {% for kw in shared_keywords %}<span class="tag tag-match">{{ kw }}</span> {% endfor %}
+                {% for it in shared_items %}<span class="tag tag-match">&#127838; {{ it }}</span> {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="tinder-actions">
+            <form method="post" action="{% url 'swipe' %}" id="swipe-form">
+                {% csrf_token %}
+                <input type="hidden" name="to_user_id" value="{{ candidate.user.id }}">
+                <input type="hidden" name="action" id="swipe-action" value="">
+                <button type="button" class="swipe-btn dislike" onclick="doSwipe('disliked')">&#10060;</button>
+                <button type="button" class="swipe-btn like" onclick="doSwipe('liked')">&#10084;&#65039;</button>
+            </form>
+        </div>
+    </div>
+    {% else %}
+    <div class="no-candidates">
+        <h3>&#127838; Пока больше никого нет</h3>
+        <p>Все хлебные знакомства на сегодня исчерпаны. Возвращайтесь позже!</p>
+    </div>
+    {% endif %}
+
+    {% if mutual_matches %}
+    <div class="mutual-section">
+        <h2>&#128150; Ваши совпадения</h2>
+        <div class="mutual-grid">
+            {% for match in mutual_matches %}
+            <div class="mutual-card">
+                {% if match.to_user.profile.avatar %}
+                <img src="{{ match.to_user.profile.avatar.url }}" alt="{{ match.to_user.profile.nickname }}">
+                {% else %}
+                <span class="mutual-placeholder">{{ match.to_user.profile.nickname|first }}</span>
+                {% endif %}
+                <p>{{ match.to_user.profile.nickname }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Match overlay -->
+<div class="match-overlay" id="match-overlay">
+    <div class="match-modal">
+        <h2>&#127838; Это мэтч!</h2>
+        <p>Вы и <strong id="match-name"></strong> понравились друг другу!</p>
+        <button class="btn btn-primary" onclick="closeMatch()">Продолжить</button>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function doSwipe(action) {
+    const form = document.getElementById('swipe-form');
+    document.getElementById('swipe-action').value = action;
+
+    const formData = new FormData(form);
+
+    fetch('{% url "swipe" %}', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest'
+        }
+    })
+    .then(r => r.json())
+    .then(data => {
+        if (data.mutual) {
+            document.getElementById('match-name').textContent = data.name;
+            document.getElementById('match-overlay').classList.add('active');
+        } else {
+            location.reload();
+        }
+    })
+    .catch(() => {
+        form.submit();
+    });
+}
+
+function closeMatch() {
+    document.getElementById('match-overlay').classList.remove('active');
+    location.reload();
+}
+</script>
+{% endblock %}

@@ -1,0 +1,144 @@
+{% extends 'core/base.html' %}
+{% block title %}Профиль — Тёплый хлеб{% endblock %}
+
+{% block content %}
+<div class="profile-page">
+
+    <!-- Profile header -->
+    <div class="profile-header">
+        {% if profile.avatar %}
+        <img src="{{ profile.avatar.url }}" alt="avatar" class="profile-avatar-large">
+        {% else %}
+        <div class="profile-avatar-placeholder">{{ profile.nickname|first }}</div>
+        {% endif %}
+        <div class="profile-header-info">
+            <h1>{{ profile.nickname }}</h1>
+            <p class="card-num">&#128179; Карта: {{ profile.card_number }}</p>
+            <div class="profile-stats">
+                <div class="stat-item">
+                    <div class="stat-val">{{ profile.bonuses }}</div>
+                    <div class="stat-label">Бонусов</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-val">{{ purchases|length }}</div>
+                    <div class="stat-label">Покупок</div>
+                </div>
+            </div>
+        </div>
+        <a href="{% url 'logout' %}" class="btn btn-secondary" style="margin-left: auto;">Выйти</a>
+    </div>
+
+    <!-- Edit profile -->
+    <div class="profile-section">
+        <h2>&#128221; Редактировать профиль</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="profile-form-grid">
+                <div class="form-group">
+                    <label>{{ form.nickname.label }}</label>
+                    {{ form.nickname }}
+                </div>
+                <div class="form-group">
+                    <label>{{ form.avatar.label }}</label>
+                    {{ form.avatar }}
+                </div>
+                <div class="form-group">
+                    <label>{{ form.gender.label }}</label>
+                    {{ form.gender }}
+                </div>
+                <div class="form-group">
+                    <label>{{ form.age.label }}</label>
+                    {{ form.age }}
+                </div>
+                <div class="form-group">
+                    <label>{{ form.birth_date.label }}</label>
+                    {{ form.birth_date }}
+                </div>
+                <div class="form-group">
+                    <label>{{ form.search_mode.label }}</label>
+                    {{ form.search_mode }}
+                </div>
+                <div class="form-group">
+                    <label>{{ form.looking_for_gender.label }}</label>
+                    {{ form.looking_for_gender }}
+                </div>
+                <div class="form-group">
+                    <label>{{ form.favorite_item.label }}</label>
+                    {{ form.favorite_item }}
+                </div>
+                <div class="form-group full-width">
+                    <label>{{ form.keywords.label }}</label>
+                    {{ form.keywords }}
+                </div>
+                <div class="form-group full-width">
+                    <label>{{ form.about.label }}</label>
+                    {{ form.about }}
+                </div>
+            </div>
+            <div class="mt-2">
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Events calendar -->
+    <div class="profile-section">
+        <h2>&#128197; Календарь мероприятий</h2>
+        {% if events %}
+        <div class="events-list">
+            {% for event in events %}
+            <div class="event-card">
+                <div>
+                    <h3>{{ event.title }}</h3>
+                    <p class="event-date">{{ event.date|date:"d.m.Y H:i" }}</p>
+                    {% if event.description %}<p class="text-muted" style="font-size:0.85rem; margin-top:4px;">{{ event.description }}</p>{% endif %}
+                    <p class="event-spots">Свободных мест: {{ event.spots_left }}</p>
+                </div>
+                <div>
+                    {% if event in joined_events %}
+                    <a href="{% url 'event_leave' event.id %}" class="btn btn-secondary">Отменить</a>
+                    {% elif event.spots_left > 0 %}
+                    <a href="{% url 'event_join' event.id %}" class="btn btn-warm">Записаться</a>
+                    {% else %}
+                    <span class="btn btn-secondary" style="opacity:0.6;">Мест нет</span>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="text-muted">Пока нет запланированных мероприятий. Следите за обновлениями!</p>
+        {% endif %}
+    </div>
+
+    <!-- Purchase history -->
+    <div class="profile-section">
+        <h2>&#128722; История покупок</h2>
+        {% if purchases %}
+        <table class="purchases-table">
+            <thead>
+                <tr>
+                    <th>Товар</th>
+                    <th>Цена</th>
+                    <th>Бонусы</th>
+                    <th>Дата</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in purchases %}
+                <tr>
+                    <td>{{ p.item_name }}</td>
+                    <td>{{ p.price }} &#8381;</td>
+                    <td class="bonus">+{{ p.bonuses_earned }}</td>
+                    <td>{{ p.date|date:"d.m.Y" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p class="text-muted">История покупок пока пуста. Покупки автоматически отображаются при использовании клубной карты в пекарне.</p>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}

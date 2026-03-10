@@ -1,0 +1,74 @@
+{% extends 'core/base.html' %}
+{% block title %}Обратная связь — Тёплый хлеб{% endblock %}
+
+{% block content %}
+<div class="feedback-page">
+    <h1>Влияйте на «Тёплого хлеба»</h1>
+
+    <div class="feedback-type-buttons">
+        <button class="type-btn" id="btn-complaint" onclick="showForm('complaint')">
+            &#128544; Хочу пожаловаться
+        </button>
+        <button class="type-btn" id="btn-praise" onclick="showForm('praise')">
+            &#128525; Расскажу о хорошем
+        </button>
+    </div>
+
+    <div class="feedback-form-wrap" id="form-complaint">
+        <h3 style="margin-bottom: 16px; color: var(--primary);">&#128221; Ваша жалоба</h3>
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="feedback_type" value="complaint">
+            <div class="form-group">
+                {{ form.text }}
+            </div>
+            <button type="submit" class="btn btn-danger">Отправить жалобу</button>
+        </form>
+    </div>
+
+    <div class="feedback-form-wrap" id="form-praise">
+        <h3 style="margin-bottom: 16px; color: var(--success);">&#11088; Ваш отзыв</h3>
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="feedback_type" value="praise">
+            <div class="form-group">
+                {{ form.text }}
+            </div>
+            <button type="submit" class="btn btn-success">Отправить похвалу</button>
+        </form>
+    </div>
+
+    {% if feedbacks %}
+    <div class="feedback-history">
+        <h2>Ваши отзывы</h2>
+        {% for fb in feedbacks %}
+        <div class="feedback-item {{ fb.feedback_type }}">
+            <div class="fb-type">
+                {% if fb.feedback_type == 'complaint' %}&#128544; Жалоба{% else %}&#11088; Похвала{% endif %}
+            </div>
+            <div class="fb-text">{{ fb.text }}</div>
+            <div class="fb-date">{{ fb.created_at|date:"d.m.Y H:i" }}</div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function showForm(type) {
+    document.getElementById('form-complaint').classList.remove('active');
+    document.getElementById('form-praise').classList.remove('active');
+    document.getElementById('btn-complaint').classList.remove('active-complaint');
+    document.getElementById('btn-praise').classList.remove('active-praise');
+
+    document.getElementById('form-' + type).classList.add('active');
+    if (type === 'complaint') {
+        document.getElementById('btn-complaint').classList.add('active-complaint');
+    } else {
+        document.getElementById('btn-praise').classList.add('active-praise');
+    }
+}
+</script>
+{% endblock %}

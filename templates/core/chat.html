@@ -1,0 +1,83 @@
+{% extends 'core/base.html' %}
+{% block title %}По соседству — Тёплый хлеб{% endblock %}
+
+{% block content %}
+<div class="chat-page">
+    <h1>По соседству</h1>
+    <p class="subtitle">Чат сообщества «Тёплого хлеба» из Telegram</p>
+
+    <div class="chat-mockup">
+        <div class="chat-header">
+            <div class="chat-header-avatar">&#127838;</div>
+            <div class="chat-header-info">
+                <h3>Тёплый хлеб | Соседи</h3>
+                <span>247 участников, 12 в сети</span>
+            </div>
+        </div>
+
+        <div class="chat-messages">
+            <div class="chat-msg incoming">
+                <div class="msg-name">Анна К.</div>
+                Ребят, кто сегодня заказывал чиабатту? Стоит того? &#128064;
+                <div class="msg-time">10:23</div>
+            </div>
+
+            <div class="chat-msg incoming">
+                <div class="msg-name">Дмитрий</div>
+                Чиабатта огонь! &#128293; Берите пока свежая, утренняя партия лучшая
+                <div class="msg-time">10:25</div>
+            </div>
+
+            <div class="chat-msg outgoing">
+                Спасибо за наводку! Возьму на обед &#128522;
+                <div class="msg-time">10:27</div>
+            </div>
+
+            <div class="chat-msg incoming">
+                <div class="msg-name">Мария</div>
+                А кто-нибудь пробовал новый ржаной с семечками? Вчера видела в витрине
+                <div class="msg-time">10:30</div>
+            </div>
+
+            <div class="chat-msg incoming">
+                <div class="msg-name">Алексей П.</div>
+                Ржаной &#128525; Я теперь только его и беру. К борщу идеально!
+                <div class="msg-time">10:32</div>
+            </div>
+
+            <div class="chat-msg incoming">
+                <div class="msg-name">Катя</div>
+                Народ, в субботу дегустация новых круассанов, кто идёт? &#127855;
+                <div class="msg-time">10:35</div>
+            </div>
+
+            <div class="chat-msg outgoing">
+                О, я точно приду! Во сколько начало?
+                <div class="msg-time">10:36</div>
+            </div>
+
+            <div class="chat-msg incoming">
+                <div class="msg-name">Катя</div>
+                С 12:00 до 15:00, приходите пораньше — в прошлый раз всё быстро разобрали &#128517;
+                <div class="msg-time">10:37</div>
+            </div>
+
+            <div class="chat-msg incoming">
+                <div class="msg-name">Иван</div>
+                Соседи, может скинемся на доставку? Кто с ул. Пушкина?
+                <div class="msg-time">10:40</div>
+            </div>
+        </div>
+
+        <div class="chat-input-bar">
+            <input type="text" placeholder="Написать сообщение..." disabled>
+            <button disabled>&#10148;</button>
+        </div>
+    </div>
+
+    <div class="chat-notice">
+        &#128274; Это визуализация закрытого Telegram-чата сообщества «Тёплого хлеба».<br>
+        Для получения доступа к реальному чату обратитесь к администратору пекарни.
+    </div>
+</div>
+{% endblock %}
