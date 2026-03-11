@@ -1,0 +1,76 @@
+{% extends 'core/base.html' %}
+{% block title %}Рекомендации для вас — Тёплого хлеба{% endblock %}
+
+{% block content %}
+<div class="recs-page">
+    <h1>&#11088; Рекомендации для вас</h1>
+    <p class="recs-subtitle">Топ-5 самых совместимых участников клуба на основе ваших интересов, покупок, мероприятий и возраста.</p>
+
+    {% if recommendations %}
+    <div class="recs-list">
+        {% for rec in recommendations %}
+        <div class="rec-card">
+            <div class="rec-card-left">
+                {% if rec.profile.avatar %}
+                <img src="{{ rec.profile.avatar.url }}" alt="{{ rec.profile.nickname }}" class="rec-avatar">
+                {% else %}
+                <span class="rec-avatar-placeholder">{{ rec.profile.nickname|first }}</span>
+                {% endif %}
+            </div>
+
+            <div class="rec-card-center">
+                <h3>{{ rec.profile.nickname }}</h3>
+                <p class="rec-meta">
+                    {% if rec.profile.age %}{{ rec.profile.age }} лет{% endif %}
+                    {% if rec.profile.get_gender_display %} &middot; {{ rec.profile.get_gender_display }}{% endif %}
+                </p>
+
+                {% if rec.profile.about %}
+                <p class="rec-about">{{ rec.profile.about|truncatewords:20 }}</p>
+                {% endif %}
+
+                {% if rec.shared_keywords or rec.shared_items %}
+                <div class="rec-shared">
+                    {% for kw in rec.shared_keywords %}<span class="tag tag-match">{{ kw }}</span>{% endfor %}
+                    {% for it in rec.shared_items %}<span class="tag tag-match">&#127838; {{ it }}</span>{% endfor %}
+                </div>
+                {% endif %}
+
+                {% if rec.details %}
+                <div class="score-breakdown">
+                    {% if rec.details.keywords %}<span class="score-chip chip-keywords">Интересы +{{ rec.details.keywords }}</span>{% endif %}
+                    {% if rec.details.items %}<span class="score-chip chip-items">Позиции +{{ rec.details.items }}</span>{% endif %}
+                    {% if rec.details.age %}<span class="score-chip chip-age">Возраст +{{ rec.details.age }}</span>{% endif %}
+                    {% if rec.details.events %}<span class="score-chip chip-events">Мероприятия +{{ rec.details.events }}</span>{% endif %}
+                    {% if rec.details.purchases %}<span class="score-chip chip-purchases">Покупки +{{ rec.details.purchases }}</span>{% endif %}
+                    {% if rec.details.search_mode %}<span class="score-chip chip-mode">Режим +{{ rec.details.search_mode }}</span>{% endif %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="rec-card-right">
+                <div class="rec-percent-ring" style="--percent: {{ rec.percent }}">
+                    <svg viewBox="0 0 36 36">
+                        <path class="ring-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        <path class="ring-fill" stroke-dasharray="{{ rec.percent }}, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                    </svg>
+                    <span class="ring-text">{{ rec.percent }}%</span>
+                </div>
+                <span class="rec-score-label">{{ rec.score }} б.</span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="no-candidates">
+        <h3>&#127838; Пока нет рекомендаций</h3>
+        <p>Заполните профиль, добавьте интересы и любимые позиции — и мы подберём вам лучших собеседников!</p>
+        <a href="{% url 'profile' %}" class="btn btn-warm mt-2">Настроить профиль</a>
+    </div>
+    {% endif %}
+
+    <div class="text-center mt-4">
+        <a href="{% url 'tinder' %}" class="btn btn-primary">&#127838; Перейти к свайпам</a>
+    </div>
+</div>
+{% endblock %}

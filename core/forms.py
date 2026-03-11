@@ -8,6 +8,10 @@ class RegisterForm(forms.Form):
         label='Имя / Псевдоним',
         widget=forms.TextInput(attrs={'class': 'form-input', 'placeholder': 'Ваше имя или псевдоним'})
     )
+    email = forms.EmailField(
+        label='Электронная почта',
+        widget=forms.EmailInput(attrs={'class': 'form-input', 'placeholder': 'example@mail.ru'})
+    )
     card_number = forms.CharField(
         max_length=20,
         label='Номер клубной карты',

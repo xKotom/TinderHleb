@@ -19,7 +19,8 @@ def register_view(request):
                 form.add_error('card_number', 'Эта карта уже зарегистрирована')
             else:
                 username = f"card_{card_number}"
-                user = User.objects.create_user(username=username, password=password)
+                email = form.cleaned_data['email']
+                user = User.objects.create_user(username=username, password=password, email=email)
                 Profile.objects.create(user=user, nickname=nickname, card_number=card_number)
                 login(request, user)
                 return redirect('home')
