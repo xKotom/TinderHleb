@@ -116,29 +116,39 @@
 {% block scripts %}
 <script>
 function doSwipe(action) {
+    const card = document.getElementById('tinder-card');
     const form = document.getElementById('swipe-form');
     document.getElementById('swipe-action').value = action;
+
+    // Показываем метку НРАВИТСЯ / ОТКЛОНЕНО
+    const label = document.createElement('div');
+    label.className = 'swipe-label ' + (action === 'liked' ? 'swipe-label--like' : 'swipe-label--dislike');
+    label.textContent = action === 'liked' ? 'НРАВИТСЯ' : 'ОТКЛОНЕНО';
+    card.appendChild(label);
+
+    // Анимация карточки
+    card.classList.add(action === 'liked' ? 'swipe-right' : 'swipe-left');
 
     const formData = new FormData(form);
 
     fetch('{% url "swipe" %}', {
         method: 'POST',
         body: formData,
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest'
-        }
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
     })
     .then(r => r.json())
     .then(data => {
-        if (data.mutual) {
-            document.getElementById('match-name').textContent = data.name;
-            document.getElementById('match-overlay').classList.add('active');
-        } else {
-            location.reload();
-        }
+        setTimeout(() => {
+            if (data.mutual) {
+                document.getElementById('match-name').textContent = data.name;
+                document.getElementById('match-overlay').classList.add('active');
+            } else {
+                location.reload();
+            }
+        }, 400);
     })
     .catch(() => {
-        form.submit();
+        setTimeout(() => form.submit(), 400);
     });
 }
 

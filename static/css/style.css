@@ -359,7 +359,53 @@ a {
     box-shadow: var(--shadow-lg);
     overflow: hidden;
     position: relative;
-    transition: var(--transition);
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.tinder-card.swipe-left {
+    transform: translateX(-120%) rotate(-15deg);
+    opacity: 0;
+}
+
+.tinder-card.swipe-right {
+    transform: translateX(120%) rotate(15deg);
+    opacity: 0;
+}
+
+/* Метка НРАВИТСЯ / ОТКЛОНЕНО */
+.swipe-label {
+    position: absolute;
+    top: 24px;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 1.4rem;
+    font-weight: 800;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0;
+    animation: labelPop 0.3s ease forwards;
+}
+
+.swipe-label--like {
+    left: 24px;
+    color: #2ecc71;
+    border: 3px solid #2ecc71;
+    transform: rotate(-15deg);
+}
+
+.swipe-label--dislike {
+    right: 24px;
+    color: #e74c3c;
+    border: 3px solid #e74c3c;
+    transform: rotate(15deg);
+}
+
+@keyframes labelPop {
+    from { opacity: 0; transform: scale(0.7) rotate(var(--r, -15deg)); }
+    to   { opacity: 1; transform: scale(1)   rotate(var(--r, -15deg)); }
 }
 
 .tinder-card-photo {
