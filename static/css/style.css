@@ -78,7 +78,7 @@
 body {
     font-family: var(--font-body);
     font-weight: 400;
-    background: linear-gradient(135deg, #F7F5F0 0%, #EDE8DF 100%);
+    background: #F7F5F0;
     background-attachment: fixed;
     color: var(--text);
     min-height: 100vh;
@@ -146,7 +146,7 @@ a {
     font-family: var(--font-heading);
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--primary);
+    color: #EDB698;
 }
 
 .nav-logo-sub {
@@ -191,7 +191,7 @@ a {
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--primary), var(--warm));
+    background: #EDB698;
     color: var(--white);
     font-weight: 600;
     font-size: 1rem;
@@ -210,7 +210,7 @@ a {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background: linear-gradient(135deg, var(--cream) 0%, #EDE8DF 100%);
+    background: var(--cream);
 }
 
 .auth-card {
@@ -286,7 +286,7 @@ a {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--primary), var(--warm));
+    background: #EDB698;
     color: var(--white);
     box-shadow: 0 4px 16px rgba(129, 89, 57, 0.25);
 }
@@ -306,12 +306,12 @@ a {
 }
 
 .btn-success {
-    background: linear-gradient(135deg, var(--success), #66BB6A);
+    background: var(--success);
     color: var(--white);
 }
 
 .btn-warm {
-    background: linear-gradient(135deg, var(--warm), #E8A030);
+    background: #C1CEE0;
     color: var(--white);
     box-shadow: 0 4px 16px rgba(241, 181, 80, 0.3);
 }
@@ -331,7 +331,7 @@ a {
 }
 
 .btn-danger {
-    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    background: #e74c3c;
     color: var(--white);
 }
 
@@ -402,7 +402,7 @@ a {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--primary), var(--warm));
+    background: var(--primary);
 
     transform: scaleX(0);
     transition: var(--transition);
@@ -507,7 +507,7 @@ a {
     width: 100%;
     height: 400px;
     object-fit: cover;
-    background: linear-gradient(135deg, var(--gray), var(--gray-dark));
+    background: var(--gray);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -522,7 +522,7 @@ a {
 .tinder-no-photo {
     width: 100%;
     height: 400px;
-    background: linear-gradient(135deg, var(--warm-light), var(--gray));
+    background: var(--warm-light);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -626,7 +626,7 @@ a {
 }
 
 .swipe-btn.like {
-    background: linear-gradient(135deg, var(--primary), var(--warm));
+    background: #B6D8B6;
     color: var(--white);
 }
 
@@ -681,7 +681,7 @@ a {
     width: 64px;
     height: 64px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--primary), var(--warm));
+    background: var(--primary);
     color: var(--white);
     display: inline-flex;
     align-items: center;
@@ -870,7 +870,7 @@ a {
 }
 
 .chat-header {
-    background: linear-gradient(135deg, #2AABEE, #229ED9);
+    background: #2AABEE;
     color: var(--white);
     padding: 16px 24px;
     display: flex;
@@ -1012,7 +1012,7 @@ a {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--primary), var(--warm));
+    background: #EDB698;
     color: var(--white);
     display: flex;
     align-items: center;
@@ -1142,6 +1142,8 @@ a {
     gap: 12px;
     margin-bottom: 24px;
     justify-content: center;
+    padding: 10px 16px;
+    border-radius: var(--radius);
 }
 
 .mode-btn {
@@ -1156,8 +1158,8 @@ a {
 }
 
 .mode-btn.active {
-    border-color: var(--primary);
-    background: linear-gradient(135deg, var(--primary), var(--warm));
+    border-color: #EDB9C1;
+    background: #EDB9C1;
     color: var(--white);
 }
 
