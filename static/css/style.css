@@ -1,8 +1,36 @@
+/* === FONTS === */
+/* Bushe Grotesque — положи файлы в static/fonts/ и раскомментируй: */
+/*
+@font-face {
+    font-family: 'Bushe Grotesque';
+    src: url('../fonts/BusheGrotesque-Regular.woff2') format('woff2'),
+         url('../fonts/BusheGrotesque-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Bushe Grotesque';
+    src: url('../fonts/BusheGrotesque-Bold.woff2') format('woff2'),
+         url('../fonts/BusheGrotesque-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+*/
+
 /* === RESET & BASE === */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+* {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 :root {
@@ -42,23 +70,55 @@
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     /* Шрифты */
-    --font-heading: 'Lora', Georgia, serif;
-    --font-body: 'Inter', sans-serif;
+    --font-heading: 'Lora', Georgia, serif;       /* логотип, заголовки — Lora Bold */
+    --font-body: 'Lora', Georgia, serif;           /* основной текст — Lora Regular */
+    --font-ui: 'Bushe Grotesque', 'Inter', sans-serif; /* UI, доп. инфо — Bushe Grotesque */
 }
 
 body {
     font-family: var(--font-body);
+    font-weight: 400;
     background: linear-gradient(135deg, #F7F5F0 0%, #EDE8DF 100%);
     background-attachment: fixed;
     color: var(--text);
     min-height: 100vh;
     line-height: 1.6;
+    text-transform: lowercase;
 }
 
 h1, h2, h3, h4 {
     font-family: var(--font-heading);
     font-weight: 700;
     color: var(--dark);
+}
+
+/* Дополнительная информация — Bushe Grotesque / Lora Italic */
+.age-gender,
+.about,
+.filter-hint,
+.auth-subtitle,
+.text-muted,
+.event-card .event-date,
+.event-card .event-spots,
+.stat-item .stat-label,
+.fb-date,
+.tag,
+.score-chip,
+.nav-link,
+.card-num {
+    font-family: var(--font-ui);
+}
+
+/* Кнопки и поля — Bushe Grotesque */
+.btn,
+.form-input,
+.form-select,
+.form-textarea,
+.mode-btn,
+.type-btn,
+.swipe-btn,
+.nav-logo-sub {
+    font-family: var(--font-ui);
 }
 
 a {
@@ -193,7 +253,7 @@ a {
     padding: 12px 16px;
     border: 2px solid var(--gray);
     border-radius: var(--radius-sm);
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-ui);
     font-size: 0.95rem;
     transition: var(--transition);
     background: var(--white);
@@ -217,7 +277,7 @@ a {
     padding: 12px 28px;
     border: none;
     border-radius: var(--radius-sm);
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-ui);
     font-weight: 600;
     font-size: 0.95rem;
     cursor: pointer;
@@ -415,7 +475,7 @@ a {
     border-radius: 8px;
     font-size: 1.4rem;
     font-weight: 800;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-ui);
     letter-spacing: 1px;
     text-transform: uppercase;
     pointer-events: none;
@@ -705,7 +765,7 @@ a {
     border: 2px solid var(--gray);
     background: var(--white);
     cursor: pointer;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-ui);
     font-weight: 600;
     font-size: 1rem;
     transition: var(--transition);
@@ -832,7 +892,7 @@ a {
 .chat-header-info h3 {
     color: var(--white);
     font-size: 1.05rem;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-ui);
 }
 
 .chat-header-info span {
@@ -898,7 +958,7 @@ a {
     padding: 10px 16px;
     border: 1px solid var(--gray);
     border-radius: 24px;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-ui);
     font-size: 0.9rem;
 }
 
@@ -1035,7 +1095,7 @@ a {
 
 .event-card h3 {
     font-size: 1.05rem;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-ui);
     margin-bottom: 4px;
 }
 
@@ -1090,7 +1150,7 @@ a {
     border: 2px solid var(--gray);
     background: var(--white);
     cursor: pointer;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-ui);
     font-weight: 600;
     transition: var(--transition);
 }
