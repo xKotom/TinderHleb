@@ -5,21 +5,10 @@
 <div class="tinder-page">
     <h1>С кем разделить тёплого хлеба?</h1>
 
-    {% if not profile.search_mode %}
-    <div class="text-center mb-2">
-        <p class="text-muted mb-2">Выберите, кого вы ищете:</p>
-        <div class="search-mode-btns">
-            <a href="{% url 'profile' %}" class="btn btn-warm btn-lg">&#128588; Настроить профиль</a>
-        </div>
-    </div>
-    {% endif %}
-
-    {% if profile.search_mode %}
     <div class="search-mode-btns">
-        <span class="mode-btn {% if profile.search_mode == 'friends' %}active{% endif %}">&#129309; Разделить фильтр</span>
-        <span class="mode-btn {% if profile.search_mode == 'love' %}active{% endif %}">&#10084;&#65039; Купить хлеб домой</span>
+        <button class="mode-btn {% if profile.search_mode == 'friends' %}active{% endif %}" id="btn-friends" onclick="setMode('friends')">&#129309; Разделить фильтр</button>
+        <button class="mode-btn {% if profile.search_mode == 'love' %}active{% endif %}" id="btn-love" onclick="setMode('love')">&#10084;&#65039; Купить хлеб домой</button>
     </div>
-    {% endif %}
 
     {% if candidate %}
     <div class="tinder-card" id="tinder-card">
@@ -115,6 +104,22 @@
 
 {% block scripts %}
 <script>
+function setMode(mode) {
+    const csrf = document.cookie.match(/csrftoken=([^;]+)/)?.[1] || '';
+    fetch('{% url "set_search_mode" %}', {
+        method: 'POST',
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRFToken': csrf,
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'mode=' + mode,
+    }).then(() => {
+        document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(mode === 'friends' ? 'btn-friends' : 'btn-love').classList.add('active');
+    });
+}
+
 function doSwipe(action) {
     const card = document.getElementById('tinder-card');
     const form = document.getElementById('swipe-form');

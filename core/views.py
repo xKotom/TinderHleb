@@ -174,6 +174,18 @@ def chat_view(request):
 
 
 @login_required
+def set_search_mode(request):
+    if request.method == 'POST':
+        mode = request.POST.get('mode', '')
+        if mode in ('friends', 'love'):
+            request.user.profile.search_mode = mode
+            request.user.profile.save(update_fields=['search_mode'])
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({'ok': True, 'mode': mode})
+    return redirect('tinder')
+
+
+@login_required
 def event_join(request, event_id):
     event = get_object_or_404(Event, id=event_id)
     if request.user not in event.participants.all() and event.spots_left() > 0:
