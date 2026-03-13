@@ -14,4 +14,5 @@ urlpatterns = [
     path('set-search-mode/', views.set_search_mode, name='set_search_mode'),
     path('event/<int:event_id>/join/', views.event_join, name='event_join'),
     path('event/<int:event_id>/leave/', views.event_leave, name='event_leave'),
+    path('about/', views.about_view, name='about'),
 ]

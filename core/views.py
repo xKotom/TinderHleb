@@ -173,6 +173,10 @@ def chat_view(request):
     return render(request, 'core/chat.html')
 
 
+def about_view(request):
+    return render(request, 'core/about_us.html')
+
+
 @login_required
 def set_search_mode(request):
     if request.method == 'POST':

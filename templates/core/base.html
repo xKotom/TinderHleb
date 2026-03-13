@@ -17,6 +17,7 @@
         </a>
         <div class="nav-links">
             <a href="{% url 'home' %}" class="nav-link">Главная</a>
+            <a href="{% url 'about' %}" class="nav-link">О проекте</a>
             <a href="{% url 'profile' %}" class="nav-link nav-avatar" title="Мой аккаунт">
                 {% if user.profile.avatar %}
                 <img src="{{ user.profile.avatar.url }}" alt="avatar">
@@ -24,6 +25,18 @@
                 <span class="avatar-placeholder">{{ user.profile.nickname|first }}</span>
                 {% endif %}
             </a>
+        </div>
+    </nav>
+    {% else %}
+    <nav class="navbar">
+        <a href="{% url 'login' %}" class="nav-logo">
+            Тёплого хлеба
+            <span class="nav-logo-sub">рожден в буше</span>
+        </a>
+        <div class="nav-links">
+            <a href="{% url 'about' %}" class="nav-link">О проекте</a>
+            <a href="{% url 'login' %}" class="nav-link">Вход</a>
+            <a href="{% url 'register' %}" class="nav-link">Регистрация</a>
         </div>
     </nav>
     {% endif %}
