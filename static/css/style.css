@@ -86,6 +86,10 @@ body {
     text-transform: lowercase;
 }
 
+input, select, textarea, button {
+    color: inherit;
+}
+
 h1, h2, h3, h4 {
     font-family: var(--font-heading);
     font-weight: 700;
@@ -201,7 +205,7 @@ a {
 .main-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 32px 24px;
+    padding: 20px 24px;
 }
 
 /* === AUTH PAGES === */
@@ -257,6 +261,9 @@ a {
     font-size: 0.95rem;
     transition: var(--transition);
     background: var(--white);
+    color: var(--dark);
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 .form-input:focus, .form-select:focus, .form-textarea:focus {
@@ -443,8 +450,8 @@ a {
 
 .tinder-page h1 {
     text-align: center;
-    font-size: 2rem;
-    margin-bottom: 32px;
+    font-size: 1.5rem;
+    margin-bottom: 16px;
     color: var(--dark);
 }
 
@@ -505,7 +512,7 @@ a {
 
 .tinder-card-photo {
     width: 100%;
-    height: 400px;
+    height: 180px;
     object-fit: cover;
     background: var(--gray);
     display: flex;
@@ -521,7 +528,7 @@ a {
 
 .tinder-no-photo {
     width: 100%;
-    height: 400px;
+    height: 180px;
     background: var(--warm-light);
     display: flex;
     align-items: center;
@@ -531,7 +538,7 @@ a {
 }
 
 .tinder-card-info {
-    padding: 24px;
+    padding: 16px 24px;
 }
 
 .tinder-card-info h3 {
@@ -595,10 +602,13 @@ a {
 }
 
 .tinder-actions {
+    padding: 20px 32px;
+}
+
+.tinder-actions form {
     display: flex;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .swipe-btn {
@@ -628,6 +638,20 @@ a {
 .swipe-btn.like {
     background: #B6D8B6;
     color: var(--white);
+}
+
+.setup-prompt {
+    text-align: center;
+    padding: 48px 20px;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.setup-prompt p {
+    color: var(--text-light);
+    margin-bottom: 20px;
+    font-size: 1.1rem;
 }
 
 .no-candidates {
@@ -1140,7 +1164,7 @@ a {
 .search-mode-btns {
     display: flex;
     gap: 12px;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
     justify-content: center;
     padding: 10px 16px;
     border-radius: var(--radius);
@@ -1151,10 +1175,13 @@ a {
     border-radius: var(--radius-sm);
     border: 2px solid var(--gray);
     background: var(--white);
+    color: var(--dark);
     cursor: pointer;
     font-family: var(--font-ui);
     font-weight: 600;
     transition: var(--transition);
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 .mode-btn.active {
