@@ -19,7 +19,7 @@
                 {% for field, errors in form.errors.items %}
                     {% for error in errors %}
                         <p>{{ error }}</p>
-                    {% endfor %}
+                    {% endfor %} 
                 {% endfor %}
                 {% if form.non_field_errors %}
                     {% for error in form.non_field_errors %}
