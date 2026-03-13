@@ -5,12 +5,19 @@
 <div class="tinder-page">
     <h1>С кем разделить тёплого хлеба?</h1>
 
+    {% if profile.search_mode %}
     <div class="search-mode-btns">
         <button class="mode-btn {% if profile.search_mode == 'friends' %}active{% endif %}" id="btn-friends" onclick="setMode('friends')">&#129309; Разделить фильтр</button>
         <button class="mode-btn {% if profile.search_mode == 'love' %}active{% endif %}" id="btn-love" onclick="setMode('love')">&#10084;&#65039; Купить хлеб домой</button>
     </div>
+    {% else %}
+    <div class="setup-prompt">
+        <p>сначала расскажи, кого ты ищешь</p>
+        <a href="{% url 'profile' %}" class="btn btn-primary">заполнить профиль</a>
+    </div>
+    {% endif %}
 
-    {% if candidate %}
+    {% if profile.search_mode and candidate %}
     <div class="tinder-card" id="tinder-card">
         {% if candidate.avatar %}
         <div class="tinder-card-photo">
@@ -66,7 +73,7 @@
             </form>
         </div>
     </div>
-    {% else %}
+    {% elif profile.search_mode %}
     <div class="no-candidates">
         <h3>&#127838; Пока больше никого нет</h3>
         <p>Все хлебные знакомства на сегодня исчерпаны. Возвращайтесь позже!</p>
