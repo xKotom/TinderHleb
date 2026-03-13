@@ -8,7 +8,19 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
+
+<nav class="navbar">
+    <a href="/templates\core\home.html" class="nav-logo">
+        Тёплого хлеба
+        <span class="nav-logo-sub">пекарня</span>
+    </a>
+    <div class="nav-links">
+        <a href="/templates\core\about_us.html" class="nav-link">о проекте</a>
+        <a href="/templates\core\login.html" class="nav-link">вход</a>
+    </div>
+</nav>
 <body>
+    
     <div class="auth-page">
         <div class="auth-card">
             <h1>Тёплого хлеба</h1>
@@ -45,6 +57,7 @@
             <p class="auth-link">
                 Нет аккаунта? <a href="{% url 'register' %}">Зарегистрироваться</a>
             </p>
+
         </div>
     </div>
 </body>
