@@ -1,0 +1,182 @@
+
+<link rel="stylesheet" href="/static/css/style.css"><html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О компании — Тёплого хлеба</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас — Тёплого хлеба</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+
+    <main class="main-content">
+        <!-- Герой секция с ссылкой на основной сайт -->
+        <div class="home-hero about-hero">
+            <h1>О нас</h1>
+            <p>сообщество пекарни «Тёплого хлеба»</p>
+            <div style="margin-top: 20px;">
+                <a href="https://teplohleba.ru/" target="_blank" class="btn btn-primary" style="padding: 12px 30px;">
+                    ← Основной сайт пекарни
+                </a>
+            </div>
+        </div>
+
+        <!-- О проекте ТиндерХлеб -->
+        <div class="about-section">
+            <h2>О проекте ТиндерХлеб</h2>
+            <div class="profile-section">
+                <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px;">
+                    <strong>ТиндерХлеб</strong> — это веб-приложение для сообщества пекарни «Тёплого хлеба». 
+                    Мы создали пространство, где гости пекарни могут находить единомышленников, 
+                    делиться впечатлениями и общаться.
+                </p>
+                <p style="font-size: 1.1rem; line-height: 1.8;">
+                    Здесь сочетаются уют домашней пекарни и современные технологии, чтобы 
+                    знакомства были тёплыми, как свежий хлеб, а общение — искренним.
+                </p>
+            </div>
+        </div>
+
+        <!-- Основные разделы сайта -->
+        <div class="about-section">
+            <h2>Основные разделы</h2>
+            
+            <!-- Раздел 1: Хлебный тиндер -->
+            <div class="profile-section" style="margin-bottom: 30px;">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                    <span style="font-size: 2.5rem;">🍞</span>
+                    <h3 style="font-family: var(--font-ui); font-size: 1.5rem; margin: 0;">С кем разделить тёплого хлеба?</h3>
+                </div>
+                <p class="text-muted" style="margin-bottom: 20px; font-size: 1rem;">
+                    Хлебный тиндер — поиск единомышленников по интересам и любимым позициям:
+                </p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
+                    <div class="value-card" style="padding: 20px;">
+                        <div style="font-size: 1.8rem; margin-bottom: 10px;">Два режима</div>
+                        <h4 style="margin-bottom: 8px;"></h4>
+                        <p class="text-muted" style="font-size: 0.9rem;">«Разделить фильтр» (друзья) и «Купить хлеб домой» (тиндер)</p>
+                    </div>
+                    
+                    <div class="value-card" style="padding: 20px;">
+                        <div style="font-size: 1.8rem; margin-bottom: 10px;">Матчинг</div>
+                        <h4 style="margin-bottom: 8px;"></h4>
+                        <p class="text-muted" style="font-size: 0.9rem;">По ключевым словам и любимой выпечке</p>
+                    </div>
+                    
+                    <div class="value-card" style="padding: 20px;">
+                        <div style="font-size: 1.8rem; margin-bottom: 10px;">Свайпы</div>
+                        <h4 style="margin-bottom: 8px;"></h4>
+                        <p class="text-muted" style="font-size: 0.9rem;">Лайк/дизлайк с уведомлением при взаимной симпатии</p>
+                    </div>
+                    
+                    <div class="value-card" style="padding: 20px;">
+                        <div style="font-size: 1.8rem; margin-bottom: 10px;">Фильтрация</div>
+                        <h4 style="margin-bottom: 8px;"></h4>
+                        <p class="text-muted" style="font-size: 0.9rem;">По полу и интересам</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Раздел 2: Обратная связь -->
+            <div class="profile-section" style="margin-bottom: 30px; background: var(--warm-light);">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                    <span style="font-size: 2.5rem;">💬</span>
+                    <h3 style="font-family: var(--font-ui); font-size: 1.5rem; margin: 0;">Обратная связь</h3>
+                </div>
+                <p class="text-muted">
+                    Делитесь впечатлениями о выпечке, жалуйтесь или хвалите — мы всегда рады слышать ваше мнение. 
+                    Вся обратная связь видна администрации и помогает нам становиться лучше.
+                </p>
+            </div>
+
+            <!-- Раздел 3: Соседский чат -->
+            <div class="profile-section" style="margin-bottom: 30px;">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                    <span style="font-size: 2.5rem;">🏠</span>
+                    <h3 style="font-family: var(--font-ui); font-size: 1.5rem; margin: 0;">Соседский чат</h3>
+                </div>
+                <p class="text-muted">
+                    Общайтесь с постоянными гостями пекарни, обсуждайте новинки меню, 
+                    договаривайтесь о совместных походах за хлебом и просто делитесь теплом.
+                </p>
+            </div>
+        </div>
+
+        <!-- Преимущества -->
+        <div class="about-section">
+            <h2>Почему стоит присоединиться?</h2>
+            <div class="values-grid" style="grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                <div class="section-card">
+                    <span class="section-icon">🥖</span>
+                    <h3>Тёплые знакомства</h3>
+                    <p class="text-muted">Находите людей с похожими вкусами на выпечку</p>
+                </div>
+                <div class="section-card">
+                    <span class="section-icon">🎁</span>
+                    <h3>Бонусы</h3>
+                    <p class="text-muted">Специальные предложения для активных участников</p>
+                </div>
+                <div class="section-card">
+                    <span class="section-icon">🗣️</span>
+                    <h3>Сообщество</h3>
+                    <p class="text-muted">Становитесь частью уютного соседского комьюнити</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Как начать -->
+        <div class="about-section">
+            <h2>Как начать?</h2>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: center;">
+                <div>
+                    <div style="font-size: 2rem; color: var(--primary);">1</div>
+                    <h3 style="margin: 10px 0;">Зарегистрируйтесь</h3>
+                    <p class="text-muted">По номеру клубной карты пекарни</p>
+                </div>
+                <div>
+                    <div style="font-size: 2rem; color: var(--primary);">2</div>
+                    <h3 style="margin: 10px 0;">Заполните профиль</h3>
+                    <p class="text-muted">Укажите любимые позиции и интересы</p>
+                </div>
+                <div>
+                    <div style="font-size: 2rem; color: var(--primary);">3</div>
+                    <h3 style="margin: 10px 0;">Начинайте общаться</h3>
+                    <p class="text-muted">Ищите друзей или любовь в хлебном тиндере</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Кнопки действий -->
+        <div class="text-center" style="margin: 50px 0;">
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://teplohleba.ru/" target="_blank" class="btn btn-secondary" style="padding: 15px 40px;">
+                    На сайт пекарни
+                </a>
+                <a href="/templates/core/login.html" class="btn btn-primary btn-lg">
+                    Найти хлеб-соулмейта!
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="main-content" style="padding: 0 24px;">
+            <p style="color: var(--white); opacity: 0.8;">
+                Выполнено специально для бушуещего чемпионата Никитой Балашовым, Анастасией Кондриковой, Аней и Алисой. Полный проект: https://github.com/xKotom/TinderHleb
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
